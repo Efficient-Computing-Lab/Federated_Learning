@@ -13,16 +13,15 @@ This introductory example to Flower uses PyTorch, but deep knowledge of PyTorch 
 Start by cloning the example project. We prepared a single-line command that you can copy into your shell which will checkout the example for you:
 
 ```shell
-git clone --depth=1 https://github.com/adap/flower.git && mv flower/examples/quickstart-pytorch . && rm -rf flower && cd quickstart-pytorch
+git clone <github_repo_link>
 ```
 
-This will create a new directory called `quickstart-pytorch` containing the following files:
+This repo has a directory called `simple_flower_example` containing the following files:
 
 ```shell
 -- pyproject.toml
 -- client.py
 -- server.py
--- README.md
 ```
 
 ### Installing Dependencies
