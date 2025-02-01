@@ -1,0 +1,28 @@
+server:
+  service_device: cpu
+  fraction_fit: 1.0
+  fraction_eval: 1.0
+  num_rounds: 10
+  differential_privacy: False
+  global_test_set_percentage: 1.0
+  batch_size: 64
+
+client:
+  num_clients: 10
+  batch_size: 64
+  local_epochs: 1
+  differential_privacy: False
+  partitioner: IidPartitioner # Options: [IidPartitioner (for i.i.d), DirichletPartitioner (for non i.i.d)]
+
+model:
+  name: "CIFAR10"
+  learning_rate: 0.001
+
+general:
+  use_wandb: True
+  random_seed: 42
+
+backend:
+  client_resources:
+    num_cpus: 2.0
+    num_gpus: 0.0

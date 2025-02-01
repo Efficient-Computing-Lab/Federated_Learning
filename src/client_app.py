@@ -1,0 +1,49 @@
+from flwr.client import Client, ClientApp
+from flwr.client.mod import LocalDpMod
+from flwr.common import Context
+
+from src.flowerClient import FlowerClient
+from src.models import MODELS
+from src.settings import settings
+from src.task import load_data
+
+
+# Construct a FlowerClient with its own data set partition.
+def get_client_fn():
+    """
+    The VirtualClientEngine will execute this function whenever a client is sampled by
+    the strategy to participate.
+    """
+    model_name = settings.model.name
+
+    def client_fn(context: Context) -> Client:
+        # Load model and data
+        if model_name not in MODELS:
+            raise ValueError(f"Invalid model name: {model_name}")
+        model_config = MODELS[model_name]
+        partition_id = context.node_config["partition-id"]
+        num_partitions = context.node_config["num-partitions"]
+        train_loader, val_loader = load_data(model_config, partition_id, num_partitions)
+        # Set client type and state
+        client_state = context.state
+        if partition_id <= num_partitions * settings.attack.fraction_malicious_clients:
+            client_type = "Malicious"
+        else:
+            client_type = "Honest"
+        client_instance = FlowerClient(model_config, client_type, client_state, train_loader, val_loader).to_client()
+        return client_instance
+
+    # If differential privacy is enabled, wrap `client_fn` in `ClientApp` with LocalDpMod
+    if settings.client.differential_privacy:
+        local_dp_obj = LocalDpMod(
+            clipping_norm=1.0,
+            sensitivity=2.0,
+            epsilon=1.5,
+            delta=1e-5,
+        )
+
+        client = ClientApp(client_fn=client_fn, mods=[local_dp_obj])
+        return client
+    else:
+        client = ClientApp(client_fn=client_fn)
+        return client

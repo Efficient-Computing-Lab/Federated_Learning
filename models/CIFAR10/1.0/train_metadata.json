@@ -1,0 +1,9 @@
+{
+    "model_name": "CIFAR10",
+    "delta": 1.0,
+    "validation_accuracy": 62.4,
+    "epochs": 200,
+    "batch_size": 64,
+    "lr": 0.001,
+    "device": "cpu"
+}
