@@ -1,0 +1,191 @@
+[92mINFO [0m:      Starting Flower ServerApp, config: num_rounds=15, no round_timeout
+[92mINFO [0m:
+[92mINFO [0m:      [INIT]
+[92mINFO [0m:      Using initial global parameters provided by strategy
+[92mINFO [0m:      Starting evaluation of initial global parameters
+[92mINFO [0m:      💡 New best global model found: 10.310000
+[92mINFO [0m:      initial parameters (loss, other metrics): 2.3046920086927476, {'centralized_accuracy': 10.31}
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 1]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[93mWARNING [0m:   No fit_metrics_aggregation_fn provided
+[92mINFO [0m:      💡 New best global model found: 30.240000
+[92mINFO [0m:      fit progress: (1, 2.006540431338511, {'centralized_accuracy': 30.240000000000002}, 11.958883958985098)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 2]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 35.810000
+[92mINFO [0m:      fit progress: (2, 1.7681145675622734, {'centralized_accuracy': 35.809999999999995}, 24.817763875005767)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 3]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 38.660000
+[92mINFO [0m:      fit progress: (3, 1.682301416518582, {'centralized_accuracy': 38.66}, 37.52462979196571)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 4]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 40.110000
+[92mINFO [0m:      fit progress: (4, 1.625590476260823, {'centralized_accuracy': 40.11}, 49.63998754194472)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 5]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (5, 2.2106296477044465, {'centralized_accuracy': 21.47}, 62.47302099992521)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 6]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (6, 2.1826872294116173, {'centralized_accuracy': 21.67}, 75.00207283394411)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 7]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (7, 2.181632174807749, {'centralized_accuracy': 22.57}, 87.25674941693433)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 8]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (8, 2.190687089968639, {'centralized_accuracy': 22.689999999999998}, 99.18661079194862)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 9]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (9, 2.1653659981527147, {'centralized_accuracy': 23.53}, 111.53624658402987)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 10]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (10, 2.1692549483791277, {'centralized_accuracy': 23.419999999999998}, 123.70103541691788)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 11]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (11, 1.6078551339495712, {'centralized_accuracy': 40.050000000000004}, 150.77129695902113)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 12]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 42.320000
+[92mINFO [0m:      fit progress: (12, 1.577709141810229, {'centralized_accuracy': 42.32}, 178.48522445897106)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 13]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      fit progress: (13, 1.5933926804050518, {'centralized_accuracy': 42.059999999999995}, 206.21272720897105)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 14]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 43.480000
+[92mINFO [0m:      fit progress: (14, 1.5439724086955855, {'centralized_accuracy': 43.480000000000004}, 235.51722616702318)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 15]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 44.400000
+[92mINFO [0m:      fit progress: (15, 1.5329916674620028, {'centralized_accuracy': 44.4}, 264.0298610419268)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [SUMMARY]
+[92mINFO [0m:      Run finished 15 round(s) in 268.61s
+[92mINFO [0m:      	History (loss, distributed):
+[92mINFO [0m:      		round 1: 2.0115595296025277
+[92mINFO [0m:      		round 2: 1.7777819730341435
+[92mINFO [0m:      		round 3: 1.693317560851574
+[92mINFO [0m:      		round 4: 1.6395622596144677
+[92mINFO [0m:      		round 5: 2.2047348611056803
+[92mINFO [0m:      		round 6: 2.183300209790468
+[92mINFO [0m:      		round 7: 2.1824576199054717
+[92mINFO [0m:      		round 8: 2.1939581006765367
+[92mINFO [0m:      		round 9: 2.1698667243123055
+[92mINFO [0m:      		round 10: 2.174412491172552
+[92mINFO [0m:      		round 11: 1.621850571781397
+[92mINFO [0m:      		round 12: 1.5901848286390305
+[92mINFO [0m:      		round 13: 1.6079688310623168
+[92mINFO [0m:      		round 14: 1.560547686368227
+[92mINFO [0m:      		round 15: 1.5485509157180786
+[92mINFO [0m:      	History (loss, centralized):
+[92mINFO [0m:      		round 0: 2.3046920086927476
+[92mINFO [0m:      		round 1: 2.006540431338511
+[92mINFO [0m:      		round 2: 1.7681145675622734
+[92mINFO [0m:      		round 3: 1.682301416518582
+[92mINFO [0m:      		round 4: 1.625590476260823
+[92mINFO [0m:      		round 5: 2.2106296477044465
+[92mINFO [0m:      		round 6: 2.1826872294116173
+[92mINFO [0m:      		round 7: 2.181632174807749
+[92mINFO [0m:      		round 8: 2.190687089968639
+[92mINFO [0m:      		round 9: 2.1653659981527147
+[92mINFO [0m:      		round 10: 2.1692549483791277
+[92mINFO [0m:      		round 11: 1.6078551339495712
+[92mINFO [0m:      		round 12: 1.577709141810229
+[92mINFO [0m:      		round 13: 1.5933926804050518
+[92mINFO [0m:      		round 14: 1.5439724086955855
+[92mINFO [0m:      		round 15: 1.5329916674620028
+[92mINFO [0m:      	History (metrics, distributed, evaluate):
+[92mINFO [0m:      	{'federated_evaluate_accuracy': [(1, 29.38),
+[92mINFO [0m:      	                                 (2, 35.57),
+[92mINFO [0m:      	                                 (3, 38.98),
+[92mINFO [0m:      	                                 (4, 40.32),
+[92mINFO [0m:      	                                 (5, 22.54),
+[92mINFO [0m:      	                                 (6, 22.4),
+[92mINFO [0m:      	                                 (7, 23.2),
+[92mINFO [0m:      	                                 (8, 23.29),
+[92mINFO [0m:      	                                 (9, 24.09),
+[92mINFO [0m:      	                                 (10, 23.59),
+[92mINFO [0m:      	                                 (11, 40.07),
+[92mINFO [0m:      	                                 (12, 42.24),
+[92mINFO [0m:      	                                 (13, 41.75),
+[92mINFO [0m:      	                                 (14, 43.58),
+[92mINFO [0m:      	                                 (15, 44.38)]}
+[92mINFO [0m:      	History (metrics, centralized):
+[92mINFO [0m:      	{'centralized_accuracy': [(0, 10.31),
+[92mINFO [0m:      	                          (1, 30.240000000000002),
+[92mINFO [0m:      	                          (2, 35.809999999999995),
+[92mINFO [0m:      	                          (3, 38.66),
+[92mINFO [0m:      	                          (4, 40.11),
+[92mINFO [0m:      	                          (5, 21.47),
+[92mINFO [0m:      	                          (6, 21.67),
+[92mINFO [0m:      	                          (7, 22.57),
+[92mINFO [0m:      	                          (8, 22.689999999999998),
+[92mINFO [0m:      	                          (9, 23.53),
+[92mINFO [0m:      	                          (10, 23.419999999999998),
+[92mINFO [0m:      	                          (11, 40.050000000000004),
+[92mINFO [0m:      	                          (12, 42.32),
+[92mINFO [0m:      	                          (13, 42.059999999999995),
+[92mINFO [0m:      	                          (14, 43.480000000000004),
+[92mINFO [0m:      	                          (15, 44.4)]}
+[92mINFO [0m:
+[32m2025-02-01 20:41:53.146[0m | [1mINFO    [0m | [36mscripts.run_simulation[0m:[36msimulate[0m:[36m23[0m - [1mTraining time: 279.29 sec[0m

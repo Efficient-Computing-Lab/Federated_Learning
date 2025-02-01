@@ -6,11 +6,10 @@ from yaml import safe_load
 
 
 class Server(BaseModel):
-    service_device: str
+    device: str
     fraction_fit: float
     fraction_eval: float
     num_rounds: int
-    differential_privacy: bool
     batch_size: int
 
     @field_validator("fraction_fit", "fraction_eval")
@@ -42,7 +41,6 @@ class Client(BaseModel):
     num_clients: int
     batch_size: int
     local_epochs: int
-    differential_privacy: bool
     partitioner: str
 
     @field_validator("num_clients", "batch_size", "local_epochs")

@@ -3,8 +3,7 @@ from logging import INFO, WARNING
 from typing import Optional, Union
 
 import torch
-import torch.nn as nn
-import wandb
+from datasets import load_dataset
 from flwr.common import (
     EvaluateRes,
     FitRes,
@@ -17,9 +16,11 @@ from flwr.common.logger import log
 from flwr.server.client_proxy import ClientProxy
 from flwr.server.strategy import FedAvg
 from flwr.server.strategy.aggregate import aggregate, aggregate_inplace
+from torch.utils.data import DataLoader
 
-from src.models import ModelConfig, set_weights
-from src.settings import FOLDER_DIR, settings
+import wandb
+from src.models import ModelConfig, get_model_transforms, set_weights
+from src.settings import settings
 from src.task import create_run_dir, test
 
 PROJECT_NAME = "FLOWER-attacks-defences"
@@ -34,14 +35,23 @@ class CustomFedAvg(FedAvg):
     (3) logs results to W&B if enabled.
     """
 
-    def __init__(self, model_config: ModelConfig, test_loader, *args, **kwargs):
+    def __init__(self, model_config: ModelConfig, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # Create a directory where to save results from this run
         self.save_path, self.run_dir = create_run_dir()
         self.model_config = model_config
-        self.test_loader = test_loader
         self.model = model_config.model
+        # Extract test loader based on configuration server_dataset_percentage
+        global_test_set = load_dataset(model_config.dataset)["test"]
+        global_test_subset_size = int(len(global_test_set) * settings.defence.server_dataset_percentage)
+        global_test_subset = global_test_set.shuffle(seed=settings.general.random_seed).select(
+            range(global_test_subset_size)
+        )
+        self.test_loader = DataLoader(
+            global_test_subset.with_transform(get_model_transforms(model_config, "test")),
+            batch_size=settings.server.batch_size,
+        )
         # Initialise W&B if set
         if settings.general.use_wandb:
             self._init_wandb_project()
@@ -135,25 +145,11 @@ class CustomFedAvg(FedAvg):
         )
         return loss, metrics
 
-    def load_server_model(self) -> nn.Module:
-        """Load server model"""
-        model_name = settings.model.name
-        server_model = self.model_config.model
-        server_model.load_state_dict(
-            torch.load(
-                FOLDER_DIR / f"models/{model_name}/{settings.defence.server_dataset_percentage}/model.pth",
-                weights_only=True,
-            )
-        )
-        return server_model
-
     def test_on_server_model(self, server_model, parameters: Parameters) -> float:
         parameters_ndarrays = parameters_to_ndarrays(parameters)
         server_model.eval()
         set_weights(server_model, parameters_ndarrays)
-        loss, _ = test(
-            server_model, self.test_loader, device=settings.server.service_device, model_config=self.model_config
-        )
+        loss, _ = test(server_model, self.test_loader, device=settings.server.device, model_config=self.model_config)
         return loss
 
     def aggregate_fit(
@@ -172,7 +168,7 @@ class CustomFedAvg(FedAvg):
         if self.inplace:
             # Does in-place weighted average of results
             if settings.defence.activation_round != 0 and server_round > settings.defence.activation_round:
-                server_model = self.load_server_model()
+                server_model = self.model_config.model
                 updated_results = []
                 for client_proxy, fit_res in results:
                     parameters = fit_res.parameters

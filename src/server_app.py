@@ -1,6 +1,5 @@
 from typing import Dict
 
-import torch
 from datasets import load_dataset
 from flwr.common import Context, ndarrays_to_parameters
 from flwr.server import ServerApp, ServerAppComponents, ServerConfig
@@ -18,19 +17,20 @@ from src.strategy import CustomFedAvg
 from src.task import test
 
 
-def gen_evaluate_fn(
-    model_config: ModelConfig,
-    test_loader: DataLoader,
-    device: torch.device,
-):
+def gen_evaluate_fn(model_config: ModelConfig):
     """Generate the function for centralized evaluation."""
 
     model = model_config.model
+    global_test_set = load_dataset(model_config.dataset)["test"]
+    test_loader = DataLoader(
+        global_test_set.with_transform(get_model_transforms(model_config, "test")),
+        batch_size=settings.server.batch_size,
+    )
 
     def evaluate(server_round, parameters_ndarrays, config):
         """Evaluate global model on centralized test set."""
         set_weights(model, parameters_ndarrays)
-        loss, accuracy = test(model, test_loader, device=device, model_config=model_config)
+        loss, accuracy = test(model, test_loader, device=settings.server.device, model_config=model_config)
         return loss, {"centralized_accuracy": accuracy}
 
     return evaluate
@@ -76,45 +76,17 @@ def get_server_fn():
         ndarrays = get_weights(model_config.model)
         parameters = ndarrays_to_parameters(ndarrays)
 
-        # Prepare dataset for central evaluation
-
-        # This is the exact same dataset as the one downloaded by the clients via
-        # FlowerDatasets. However, we don't use FlowerDatasets for the server since
-        # partitioning is not needed. We make use of the "test" split only
-        global_test_set = load_dataset(model_config.dataset)["test"]
-        # Extract test loader
-        test_loader = DataLoader(
-            global_test_set.with_transform(get_model_transforms(model_config, "test")),
-            batch_size=settings.server.batch_size,
-        )
-
         # Define strategy
         strategy = CustomFedAvg(
             model_config=model_config,
-            test_loader=test_loader,
             fraction_fit=settings.server.fraction_fit,
             fraction_evaluate=settings.server.fraction_eval,
             initial_parameters=parameters,
             on_fit_config_fn=on_fit_config,
-            evaluate_fn=gen_evaluate_fn(model_config, test_loader, device=settings.server.service_device),
+            evaluate_fn=gen_evaluate_fn(model_config),
             evaluate_metrics_aggregation_fn=weighted_average,
         )
         config = ServerConfig(num_rounds=settings.server.num_rounds)
-
-        # TODO: Fix differential privacy parameters
-        if settings.server.differential_privacy:
-            pass
-            # # Differential privacy parameters
-            # noise_multiplier = run_config["noise-multiplier"]  # Adjust based on desired privacy level
-            # clipping_norm = run_config["clipping-norm"]  # Fixed clipping norm value
-            # Number of clients sampled per round
-            # num_sampled_servers = run_config["available-clients"] * settings.server.fraction_fit
-            # dp_strategy = DifferentialPrivacyServerSideFixedClipping(strategy,
-            #                                                          noise_multiplier,
-            #                                                          clipping_norm,
-            #                                                          num_sampled_servers)
-            # return ServerAppComponents(strategy=dp_strategy, config=config)
-
         return ServerAppComponents(strategy=strategy, config=config)
 
     server = ServerApp(server_fn=server_fn)

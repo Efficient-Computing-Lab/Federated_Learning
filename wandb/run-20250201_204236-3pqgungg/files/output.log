@@ -1,0 +1,79 @@
+[92mINFO [0m:      Starting Flower ServerApp, config: num_rounds=15, no round_timeout
+[92mINFO [0m:
+[92mINFO [0m:      [INIT]
+[92mINFO [0m:      Using initial global parameters provided by strategy
+[92mINFO [0m:      Starting evaluation of initial global parameters
+[92mINFO [0m:      💡 New best global model found: 10.000000
+[92mINFO [0m:      initial parameters (loss, other metrics): 2.305150238571653, {'centralized_accuracy': 10.0}
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 1]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[93mWARNING [0m:   No fit_metrics_aggregation_fn provided
+[92mINFO [0m:      💡 New best global model found: 25.710000
+[92mINFO [0m:      fit progress: (1, 2.0336760214179943, {'centralized_accuracy': 25.71}, 12.307558125001378)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 2]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_fit: received 10 results and 0 failures
+[92mINFO [0m:      💡 New best global model found: 31.380000
+[92mINFO [0m:      fit progress: (2, 1.8548946889342777, {'centralized_accuracy': 31.380000000000003}, 25.249362125061452)
+[92mINFO [0m:      configure_evaluate: strategy sampled 10 clients (out of 10)
+[92mINFO [0m:      aggregate_evaluate: received 10 results and 0 failures
+[92mINFO [0m:
+[92mINFO [0m:      [ROUND 3]
+[92mINFO [0m:      configure_fit: strategy sampled 10 clients (out of 10)
+Traceback (most recent call last):
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/server/superlink/fleet/vce/vce_api.py", line 220, in run_api
+    with ThreadPoolExecutor() as executor:
+  File "/Users/krithman/.pyenv/versions/3.11.11/lib/python3.11/concurrent/futures/_base.py", line 647, in __exit__
+    self.shutdown(wait=True)
+  File "/Users/krithman/.pyenv/versions/3.11.11/lib/python3.11/concurrent/futures/thread.py", line 235, in shutdown
+    t.join()
+  File "/Users/krithman/.pyenv/versions/3.11.11/lib/python3.11/threading.py", line 1119, in join
+    self._wait_for_tstate_lock()
+  File "/Users/krithman/.pyenv/versions/3.11.11/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/simulation/run_simulation.py", line 370, in _main_loop
+    vce.start_vce(
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/server/superlink/fleet/vce/vce_api.py", line 374, in start_vce
+    run_api(
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/server/superlink/fleet/vce/vce_api.py", line 251, in run_api
+    backend.terminate()
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/server/superlink/fleet/vce/backend/raybackend.py", line 193, in terminate
+    ray.shutdown()
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/ray/_private/worker.py", line 1829, in shutdown
+    global_worker.core_worker.shutdown_driver()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/krithman/Documents/PhD/Federated_Learning/scripts/run_simulation.py", line 15, in simulate
+    run_simulation(
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/simulation/run_simulation.py", line 211, in run_simulation
+    _ = _run_simulation(
+        ^^^^^^^^^^^^^^^^
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/simulation/run_simulation.py", line 510, in _run_simulation
+    updated_context = _main_loop(*args)
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/krithman/Library/Caches/pypoetry/virtualenvs/src-DMoiYWiG-py3.11/lib/python3.11/site-packages/flwr/simulation/run_simulation.py", line 406, in _main_loop
+    serverapp_th.join()
+  File "/Users/krithman/.pyenv/versions/3.11.11/lib/python3.11/threading.py", line 1119, in join
+    self._wait_for_tstate_lock()
+  File "/Users/krithman/.pyenv/versions/3.11.11/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

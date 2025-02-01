@@ -1,16 +1,14 @@
 server:
-  service_device: cpu
+  device: cpu
   fraction_fit: 1.0
   fraction_eval: 1.0
   num_rounds: 10
-  differential_privacy: False
   batch_size: 64
 
 client:
   num_clients: 10
   batch_size: 64
   local_epochs: 1
-  differential_privacy: False
   partitioner: IidPartitioner # Options: [IidPartitioner (for i.i.d), DirichletPartitioner (for non i.i.d)]
 
 model:
@@ -22,10 +20,10 @@ attack:
   fraction_malicious_clients: 0.9
   type: "Byzantine Attack" # Options: [Label Flip, Byzantine Attack]
 
-#defence:
-#  activation_round: 10
-#  k: 2
-#  server_dataset_percentage: 1.0
+defence:
+  activation_round: 10
+  k: 5
+  server_dataset_percentage: 1.0
 
 general:
   use_wandb: True

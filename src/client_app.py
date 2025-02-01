@@ -1,5 +1,4 @@
 from flwr.client import Client, ClientApp
-from flwr.client.mod import LocalDpMod
 from flwr.common import Context
 
 from src.flowerClient import FlowerClient
@@ -33,17 +32,5 @@ def get_client_fn():
         client_instance = FlowerClient(model_config, client_type, client_state, train_loader, val_loader).to_client()
         return client_instance
 
-    # If differential privacy is enabled, wrap `client_fn` in `ClientApp` with LocalDpMod
-    if settings.client.differential_privacy:
-        local_dp_obj = LocalDpMod(
-            clipping_norm=1.0,
-            sensitivity=2.0,
-            epsilon=1.5,
-            delta=1e-5,
-        )
-
-        client = ClientApp(client_fn=client_fn, mods=[local_dp_obj])
-        return client
-    else:
-        client = ClientApp(client_fn=client_fn)
-        return client
+    client = ClientApp(client_fn=client_fn)
+    return client
