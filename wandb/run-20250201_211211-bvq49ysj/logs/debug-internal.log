@@ -1,0 +1,18 @@
+{"time":"2025-02-01T21:12:11.381063+02:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-02-01T21:12:11.381132+02:00","level":"INFO","msg":"created symlink","path":"/Users/krithman/Documents/PhD/Federated_Learning/wandb/run-20250201_211211-bvq49ysj/logs/debug-core.log"}
+{"time":"2025-02-01T21:12:11.499481+02:00","level":"INFO","msg":"created new stream","id":"bvq49ysj"}
+{"time":"2025-02-01T21:12:11.49953+02:00","level":"INFO","msg":"stream: started","id":"bvq49ysj"}
+{"time":"2025-02-01T21:12:11.499539+02:00","level":"INFO","msg":"handler: started","stream_id":"bvq49ysj"}
+{"time":"2025-02-01T21:12:11.499567+02:00","level":"INFO","msg":"sender: started","stream_id":"bvq49ysj"}
+{"time":"2025-02-01T21:12:11.499582+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"bvq49ysj"}
+{"time":"2025-02-01T21:12:11.84277+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-02-01T21:18:01.975481+02:00","level":"INFO","msg":"stream: closing","id":"bvq49ysj"}
+{"time":"2025-02-01T21:18:01.975548+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-02-01T21:18:01.976472+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-02-01T21:18:02.170149+02:00","level":"WARN","msg":"No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job"}
+{"time":"2025-02-01T21:18:02.170237+02:00","level":"INFO","msg":"sender: sendDefer: no job artifact to save"}
+{"time":"2025-02-01T21:18:02.727629+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-02-01T21:18:03.018545+02:00","level":"INFO","msg":"handler: closed","stream_id":"bvq49ysj"}
+{"time":"2025-02-01T21:18:03.018588+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"bvq49ysj"}
+{"time":"2025-02-01T21:18:03.018643+02:00","level":"INFO","msg":"sender: closed","stream_id":"bvq49ysj"}
+{"time":"2025-02-01T21:18:03.018952+02:00","level":"INFO","msg":"stream: closed","id":"bvq49ysj"}

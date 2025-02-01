@@ -167,7 +167,7 @@ class CustomFedAvg(FedAvg):
 
         if self.inplace:
             # Does in-place weighted average of results
-            if settings.defence.activation_round != 0 and server_round > settings.defence.activation_round:
+            if settings.defence.activation_round != 0 and server_round >= settings.defence.activation_round:
                 server_model = self.model_config.model
                 updated_results = []
                 for client_proxy, fit_res in results:
