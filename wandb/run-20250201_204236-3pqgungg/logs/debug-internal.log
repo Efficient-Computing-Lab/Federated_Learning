@@ -1,8 +1,0 @@
-{"time":"2025-02-01T20:42:36.407716+02:00","level":"INFO","msg":"using version","core version":"0.18.7"}
-{"time":"2025-02-01T20:42:36.407816+02:00","level":"INFO","msg":"created symlink","path":"/Users/krithman/Documents/PhD/Federated_Learning/wandb/run-20250201_204236-3pqgungg/logs/debug-core.log"}
-{"time":"2025-02-01T20:42:36.52192+02:00","level":"INFO","msg":"created new stream","id":"3pqgungg"}
-{"time":"2025-02-01T20:42:36.521972+02:00","level":"INFO","msg":"stream: started","id":"3pqgungg"}
-{"time":"2025-02-01T20:42:36.521981+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"3pqgungg"}
-{"time":"2025-02-01T20:42:36.522008+02:00","level":"INFO","msg":"sender: started","stream_id":"3pqgungg"}
-{"time":"2025-02-01T20:42:36.521985+02:00","level":"INFO","msg":"handler: started","stream_id":"3pqgungg"}
-{"time":"2025-02-01T20:42:36.873886+02:00","level":"INFO","msg":"Starting system monitor"}
