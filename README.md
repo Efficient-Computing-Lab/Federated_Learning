@@ -19,11 +19,12 @@ Install dependencies using Poetry at the repo root:
 poetry install
 ```
 
-Now that you've set your poetry dependencies, you can set the configuration yaml file as an environmental variable 
-and run the simulation script using Poetry:
-
-```bash
+Now that you've set your poetry dependencies, you have to set the configuration yaml file as an environmental variable: 
+```sh
 export config_file_name=config
+```
+and run the simulation script using Poetry:
+```sh
 poetry run simulation
 ```
 The configs directory contains predefined YAML configuration files designed for simulating various attacks, such as `config_byzantine_attack` and `config_label_flipping`.
