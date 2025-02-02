@@ -41,11 +41,12 @@ def on_fit_config(server_round: int):
     Construct `config` that clients receive when running `fit()`
     :param server_round: server round
     """
+    # Activate attack on configurable server round
     attack_activated = False
-    # Enable a simple form of learning rate decay
     if settings.attack.activation_round != 0 and server_round >= settings.attack.activation_round:
         attack_activated = True
-    return {"attack_activated": attack_activated}
+    lr = settings.model.learning_rate
+    return {"attack_activated": attack_activated, "lr": lr}
 
 
 # Define metric aggregation function

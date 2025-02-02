@@ -140,61 +140,6 @@ def set_weights(model, parameters):
     model.load_state_dict(state_dict, strict=True)
 
 
-def load_model_metadata(model_name: str):
-    match model_name:
-        case "FashionMNIST":
-            dataset = "zalando-datasets/fashion_mnist"
-            model = MNIST_Net()
-            target_image = "image"
-            fm_normalization = ((0.1307,), (0.3081,))
-            eval_transforms = Compose([ToTensor(), Normalize(*fm_normalization)])
-            train_transforms = Compose(
-                [
-                    RandomCrop(28, padding=4),
-                    RandomHorizontalFlip(),
-                    ToTensor(),
-                    Normalize(*fm_normalization),
-                ]
-            )
-        case "CIFAR10":
-            dataset = "uoft-cs/cifar10"
-            model = CIFAR_Net(num_classes=10)
-            target_image = "img"
-            fm_normalization = ((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-            eval_transforms = Compose([ToTensor(), Normalize(*fm_normalization)])
-            train_transforms = Compose(
-                [
-                    RandomHorizontalFlip(),
-                    RandomCrop(32, padding=4),
-                    ToTensor(),
-                    Normalize(*fm_normalization),
-                ]
-            )
-        case "CIFAR100":
-            dataset = "uoft-cs/cifar100"
-            model = CIFAR_Net(num_classes=100)
-            target_image = "img"
-            fm_normalization = ((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-            eval_transforms = Compose([ToTensor(), Normalize(*fm_normalization)])
-            train_transforms = Compose(
-                [
-                    RandomHorizontalFlip(),
-                    RandomCrop(32, padding=4),
-                    ToTensor(),
-                    Normalize(*fm_normalization),
-                ]
-            )
-        case _:
-            raise ValueError(f"Invalid model name: {model_name}")
-    return {
-        "dataset": dataset,
-        "model": model,
-        "target_image": target_image,
-        "eval_transforms": eval_transforms,
-        "train_transforms": train_transforms,
-    }
-
-
 def get_model_transforms(model_config: ModelConfig, type_transform: str) -> Compose:
     """Return a function that apply standard transformations to images."""
 

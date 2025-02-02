@@ -4,7 +4,6 @@ from flwr.common import NDArrays, Scalar
 from flwr.common.record import RecordSet
 
 from src.models import ModelConfig, get_weights, set_weights
-from src.settings import settings
 from src.task import test, train
 
 
@@ -40,6 +39,7 @@ class FlowerClient(NumPyClient):
         for example, to set the number of (local) training epochs.
         """
         attack_activated = bool(config["attack_activated"])
+        lr = float(config["lr"])
         # Apply weights from global models (the whole model is replaced)
         set_weights(self.model, parameters)
 
@@ -47,7 +47,7 @@ class FlowerClient(NumPyClient):
             self.model,
             self.train_loader,
             client_type=self.client_type,
-            lr=settings.model.learning_rate,
+            lr=lr,
             device=self.device,
             model_config=self.model_config,
             attack_activated=attack_activated,
