@@ -3,13 +3,12 @@ server:
   fraction_fit: 1.0
   fraction_eval: 1.0
   num_rounds: 15
-  global_test_set_percentage: 1.0
   batch_size: 64
 
 client:
   num_clients: 10
   batch_size: 64
-  local_epochs: 1
+  local_epochs: 10
   partitioner: IidPartitioner # Options: [IidPartitioner (for i.i.d), DirichletPartitioner (for non i.i.d)]
 
 model:
