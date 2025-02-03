@@ -29,4 +29,6 @@ poetry run simulation
 ```
 The configs directory contains predefined YAML configuration files designed for simulating various attacks, such as `config_byzantine_attack` and `config_label_flipping`.
 To apply a specific configuration, simply update the corresponding environment variable with the desired YAML file name.
-![alt text](defence_draw.png "Title")
+<p align="center">
+  <img src="defence_draw.png" alt="Defence"/>
+</p>
