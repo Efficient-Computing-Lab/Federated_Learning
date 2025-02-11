@@ -163,7 +163,6 @@ class CustomFedAvg(FedAvg):
         The iteration terminates, and the function returns the number of clients processed up to that point.
         """
 
-        print(f"Losses: {losses}")
         cumulative_sum = 0
         for i, value in enumerate(losses):
             cumulative_sum += value
@@ -172,7 +171,6 @@ class CustomFedAvg(FedAvg):
             next_value = losses[i + 1]
             if next_value > current_mean + settings.defence.loss_threshold:
                 break
-        print(f"Return value: {i + 1}")
         return i + 1
 
     def aggregate_fit(
@@ -199,7 +197,6 @@ class CustomFedAvg(FedAvg):
                     loss = self._test_on_server_model(server_model, parameters)
                     my_loss.append(loss)
                     updated_results.append((loss, client_proxy, fit_res))
-                print(sorted(my_loss))
                 updated_results = sorted(updated_results, key=lambda x: x[0])  # Sort by loss
                 ordered_losses = list(map(lambda r: r[0], updated_results))
                 num_selected_clients = self._set_clients_for_aggregation(ordered_losses)
