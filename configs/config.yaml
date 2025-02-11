@@ -2,7 +2,7 @@ server:
   device: cpu
   fraction_fit: 1.0
   fraction_eval: 1.0
-  num_rounds: 50
+  num_rounds: 60
   global_test_set_percentage: 1.0
   batch_size: 64
 

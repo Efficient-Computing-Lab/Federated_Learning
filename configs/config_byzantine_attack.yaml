@@ -2,7 +2,7 @@ server:
   device: cpu
   fraction_fit: 1.0
   fraction_eval: 1.0
-  num_rounds: 10
+  num_rounds: 60
   batch_size: 64
 
 client:
@@ -16,13 +16,13 @@ model:
   learning_rate: 0.001
 
 attack:
-  activation_round: 5
-  fraction_malicious_clients: 0.9
+  activation_round: 2
+  fraction_malicious_clients: 0.5
   type: "Byzantine Attack" # Options: [Label Flip, Byzantine Attack]
 
 defence:
-  activation_round: 10
-  k: 5
+  activation_round: 2
+  loss_threshold: 0.25
   server_dataset_percentage: 1.0
 
 general:

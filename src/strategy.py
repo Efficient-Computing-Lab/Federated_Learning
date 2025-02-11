@@ -145,12 +145,35 @@ class CustomFedAvg(FedAvg):
         )
         return loss, metrics
 
-    def test_on_server_model(self, server_model, parameters: Parameters) -> float:
+    def _test_on_server_model(self, server_model, parameters: Parameters) -> float:
         parameters_ndarrays = parameters_to_ndarrays(parameters)
         server_model.eval()
         set_weights(server_model, parameters_ndarrays)
         loss, _ = test(server_model, self.test_loader, device=settings.server.device, model_config=self.model_config)
         return loss
+
+    @staticmethod
+    def _set_clients_for_aggregation(losses: list[float]) -> int:
+        """
+        Extract clients for global aggregation based on their loss values.
+        Specifically, scan the ordered list of losses from the minimum to the maximum value
+        and compute the mean of the inspected losses.
+        If the loss of the next client exceeds the current mean by a predefined threshold,
+        a potentially malicious client with an anomalous loss value is identified.
+        The iteration terminates, and the function returns the number of clients processed up to that point.
+        """
+
+        print(f"Losses: {losses}")
+        cumulative_sum = 0
+        for i, value in enumerate(losses):
+            cumulative_sum += value
+            current_mean = cumulative_sum / (i + 1)
+            # Check if the next element exceeds the current mean by the threshold
+            next_value = losses[i + 1]
+            if next_value > current_mean + settings.defence.loss_threshold:
+                break
+        print(f"Return value: {i + 1}")
+        return i + 1
 
     def aggregate_fit(
         self,
@@ -170,12 +193,17 @@ class CustomFedAvg(FedAvg):
             if settings.defence.activation_round != 0 and server_round >= settings.defence.activation_round:
                 server_model = self.model_config.model
                 updated_results = []
+                my_loss = []
                 for client_proxy, fit_res in results:
                     parameters = fit_res.parameters
-                    loss = self.test_on_server_model(server_model, parameters)
+                    loss = self._test_on_server_model(server_model, parameters)
+                    my_loss.append(loss)
                     updated_results.append((loss, client_proxy, fit_res))
+                print(sorted(my_loss))
                 updated_results = sorted(updated_results, key=lambda x: x[0])  # Sort by loss
-                updated_results = updated_results[: settings.defence.k]  # Select the k items with the smallest loss
+                ordered_losses = list(map(lambda r: r[0], updated_results))
+                num_selected_clients = self._set_clients_for_aggregation(ordered_losses)
+                updated_results = updated_results[:num_selected_clients]  # Select the k items with the smallest loss
                 updated_results = [updated_result[1:] for updated_result in updated_results]  # Remove loss value
                 aggregated_ndarrays = aggregate_inplace(updated_results)
             else:

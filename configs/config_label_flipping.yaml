@@ -2,13 +2,13 @@ server:
   device: cpu
   fraction_fit: 1.0
   fraction_eval: 1.0
-  num_rounds: 15
+  num_rounds: 60
   batch_size: 64
 
 client:
   num_clients: 10
   batch_size: 64
-  local_epochs: 10
+  local_epochs: 5
   partitioner: IidPartitioner # Options: [IidPartitioner (for i.i.d), DirichletPartitioner (for non i.i.d)]
 
 model:
@@ -16,14 +16,14 @@ model:
   learning_rate: 0.001
 
 attack:
-  activation_round: 5
+  activation_round: 2
   fraction_malicious_clients: 0.5
   type: "Label Flip" # Options: [Label Flip, Byzantine Attack]
   num_labels_to_flip: 8
 
 defence:
-  activation_round: 5
-  k: 5
+  activation_round: 2
+  loss_threshold: 0.25
   server_dataset_percentage: 1.0
 
 general:

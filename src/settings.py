@@ -120,7 +120,7 @@ class Attack(BaseModel):
 
 class Defence(BaseModel):
     activation_round: int = 0
-    k: int = 0
+    loss_threshold: float = 0
     server_dataset_percentage: float = 1.0
 
     @field_validator("server_dataset_percentage")
@@ -135,7 +135,7 @@ class Defence(BaseModel):
             raise ValueError(f"Under attack configuration: {info.field_name} must be between 0.0 and 1.0. Got {value}")
         return value
 
-    @field_validator("activation_round", "k")
+    @field_validator("activation_round", "loss_threshold")
     def validate_positive(cls, value: int, info: ValidationInfo):
         """
         Validate individual fields are positive.
@@ -179,25 +179,6 @@ class Config(BaseModel):
             super().__init__(**config)
         else:
             raise FileNotFoundError("Error: yaml config file not found.")
-
-    @field_validator("defence")
-    def validate_defence_clients(cls, value, info):
-        """
-        Validate that the number of client (Defence attribute) is valid.
-        It should not exceed the total number of all FL clients.
-        :param value: Instance of Defence class
-        :param info: Instance of Config class
-        :return: Validated defence number of clients or raise exception
-        """
-        total_clients = info.data["client"].num_clients
-        k = value.k
-        if total_clients < k:
-            raise ValueError(
-                f"Number of k smallest losses cannot be more than "
-                f"the total number of clients ({total_clients}). "
-                f"Got k={k}"
-            )
-        return value
 
     @field_validator("attack", "defence")
     def validate_activation_round(cls, value: Attack | Defence, info: ValidationInfo):
