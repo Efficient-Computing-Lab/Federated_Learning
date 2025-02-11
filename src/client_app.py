@@ -25,7 +25,7 @@ def get_client_fn():
         train_loader, val_loader = load_data(model_config, partition_id, num_partitions)
         # Set client type and state
         client_state = context.state
-        if partition_id <= num_partitions * settings.attack.fraction_malicious_clients:
+        if partition_id < num_partitions * settings.attack.fraction_malicious_clients:
             client_type = "Malicious"
         else:
             client_type = "Honest"
