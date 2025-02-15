@@ -200,7 +200,7 @@ class CustomFedAvg(FedAvg):
                 updated_results = sorted(updated_results, key=lambda x: x[0])  # Sort by loss
                 ordered_losses = list(map(lambda r: r[0], updated_results))
                 num_selected_clients = self._set_clients_for_aggregation(ordered_losses)
-                updated_results = updated_results[:num_selected_clients]  # Select the k items with the smallest loss
+                updated_results = updated_results[:num_selected_clients]
                 updated_results = [updated_result[1:] for updated_result in updated_results]  # Remove loss value
                 aggregated_ndarrays = aggregate_inplace(updated_results)
             else:
@@ -214,9 +214,9 @@ class CustomFedAvg(FedAvg):
                     loss = self.test_on_server_model(parameters)
                     updated_weights_results.append((loss, parameters, num_examples))
                 updated_weights_results = sorted(updated_weights_results, key=lambda x: x[0])  # Sort by loss
-                updated_weights_results = updated_weights_results[
-                    : settings.defence.k
-                ]  # Select the k items with the smallest loss
+                ordered_losses = list(map(lambda r: r[0], updated_weights_results))
+                num_selected_clients = self._set_clients_for_aggregation(ordered_losses)
+                updated_weights_results = updated_weights_results[:num_selected_clients]
                 updated_weights_results = [
                     updated_weights_result[1:] for updated_weights_result in updated_weights_results
                 ]  # Remove loss value
